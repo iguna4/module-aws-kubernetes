@@ -89,8 +89,8 @@ resource "aws_iam_role_policy_attachment" "ms-node-AmazonEKS_CNI_Policy" {
   role       = aws_iam_role.ms-node.name
 }
 
-resource "aws_iam_role_policy_attachment" "ms-node-AmazonEC2ContainerRegistryReadyOnly" {
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadyOnly"
+resource "aws_iam_role_policy_attachment" "ms-node-ContainerRegistryReadOnly" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
   role       = aws_iam_role.ms-node.name
 }
 
@@ -112,7 +112,7 @@ resource "aws_eks_node_group" "ms-node-group" {
   depends_on = [
     aws_iam_role_policy_attachment.ms-node-AmazonEKSWorkerNodePolicy,
     aws_iam_role_policy_attachment.ms-node-AmazonEKS_CNI_Policy,
-    aws_iam_role_policy_attachment.ms-node-AmazonEC2ContainerRegistryReadyOnly
+    aws_iam_role_policy_attachment.ms-node-ContainerRegistryReadOnly
   ]
 }
 
